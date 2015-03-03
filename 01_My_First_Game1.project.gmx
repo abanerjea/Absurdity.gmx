@@ -8,21 +8,43 @@
   <sprites name="sprites">
     <sprite>sprites\spr_clown</sprite>
     <sprite>sprites\spr_wall</sprite>
+    <sprites name="Levels">
+      <sprite>sprites\sprite1</sprite>
+      <sprite>sprites\sprite2</sprite>
+      <sprite>sprites\sprite3</sprite>
+      <sprite>sprites\sprite4</sprite>
+      <sprite>sprites\sprite5</sprite>
+    </sprites>
+    <sprite>sprites\level_select</sprite>
   </sprites>
-  <backgrounds name="background"/>
+  <backgrounds name="background">
+    <background>background\background0</background>
+  </backgrounds>
   <paths name="paths"/>
   <objects name="objects">
+    <object>objects\obj_gamecontrol</object>
+    <object>objects\object1</object>
+    <object>objects\object2</object>
+    <object>objects\object3</object>
+    <object>objects\object4</object>
+    <object>objects\object5</object>
+    <object>objects\start_button</object>
     <object>objects\obj_wall</object>
     <object>objects\obj_clown</object>
   </objects>
   <rooms name="rooms">
+    <room>rooms\levels</room>
     <room>rooms\rm_main</room>
+    <room>rooms\rm_main2</room>
+    <room>rooms\rm_main3</room>
+    <room>rooms\rm_main4</room>
+    <room>rooms\rm_main5</room>
   </rooms>
   <help>
     <rtf>help.rtf</rtf>
   </help>
   <TutorialState>
-    <IsTutorial>-1</IsTutorial>
+    <IsTutorial>0</IsTutorial>
     <TutorialName>C:\Users\Ajita\AppData\Local\GameMaker-Studio\tutorials\01_My_First_Game\</TutorialName>
     <TutorialPage>5</TutorialPage>
   </TutorialState>
