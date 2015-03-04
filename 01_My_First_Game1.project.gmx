@@ -3,10 +3,12 @@
   <Configs name="configs">
     <Config>Configs\Default</Config>
   </Configs>
+  <datafiles number="1" name="datafiles"/>
   <NewExtensions/>
   <sounds name="sound"/>
   <sprites name="sprites">
     <sprite>sprites\spr_clown</sprite>
+    <sprite>sprites\sprite8</sprite>
     <sprite>sprites\spr_wall</sprite>
     <sprites name="Levels">
       <sprite>sprites\sprite1</sprite>
@@ -16,11 +18,19 @@
       <sprite>sprites\sprite5</sprite>
     </sprites>
     <sprite>sprites\level_select</sprite>
+    <sprite>sprites\sprite9</sprite>
+    <sprite>sprites\test_sprite</sprite>
   </sprites>
   <backgrounds name="background">
     <background>background\background0</background>
+    <background>background\background1</background>
   </backgrounds>
   <paths name="paths"/>
+  <scripts name="scripts">
+    <script>scripts\scr_Name_Create.gml</script>
+    <script>scripts\scr_Name_Draw.gml</script>
+    <script>scripts\scr_Name_KeyPress.gml</script>
+  </scripts>
   <objects name="objects">
     <object>objects\obj_gamecontrol</object>
     <object>objects\object1</object>
@@ -31,6 +41,9 @@
     <object>objects\start_button</object>
     <object>objects\obj_wall</object>
     <object>objects\obj_clown</object>
+    <object>objects\object8</object>
+    <object>objects\obj_bird</object>
+    <object>objects\obj_test</object>
   </objects>
   <rooms name="rooms">
     <room>rooms\levels</room>
@@ -44,7 +57,7 @@
     <rtf>help.rtf</rtf>
   </help>
   <TutorialState>
-    <IsTutorial>0</IsTutorial>
+    <IsTutorial>-1</IsTutorial>
     <TutorialName>C:\Users\Ajita\AppData\Local\GameMaker-Studio\tutorials\01_My_First_Game\</TutorialName>
     <TutorialPage>5</TutorialPage>
   </TutorialState>
