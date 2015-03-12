@@ -67,9 +67,23 @@ for (i = 0; i &lt; global.numberOfEvidenceSlot; i += 1)
         global.EvidenceSlot[i].y = iy;
     }
     
-    //test
-    //global.EvidenceSlot[i].item.type = 1;
-    //global.EvidenceSlot[i].item.slot = i;
+    with (global.EvidenceSlot[i].item)
+    {
+        padding = 16;
+        maxLength = view_xview[0] + view_wview[0]/2;
+        font = fnt_ComicSansMS;
+                
+        text_length = string_length(text);
+        font_size = font_get_size(font);
+                
+        draw_set_font(font);
+                
+        text_width = string_width_ext(text, font_size+(font_size/2), maxLength);
+        text_height = string_height_ext(text, font_size+(font_size/2), maxLength);
+                
+        boxWidth = text_width + padding * 2;
+        boxHeight = text_height + padding * 2
+    }
 }
 </string>
           </argument>
@@ -277,10 +291,24 @@ if (global.showProofSlots)
     {
         if (global.EvidenceSlot[i].item.type != 0)
         {
-            draw_sprite(spr_items, 
-                        global.EvidenceSlot[i].item.slot, 
-                        global.EvidenceSlot[i].x,
-                        global.EvidenceSlot[i].y);
+            draw_set_color(c_olive);
+            draw_rectangle
+            (global.EvidenceSlot[i].x,
+             global.EvidenceSlot[i].y,
+             global.EvidenceSlot[i].x + global.EvidenceSlot[i].item.boxWidth, 
+             global.EvidenceSlot[i].y + global.EvidenceSlot[i].item.boxHeight, 
+             0);
+            
+            draw_set_font(global.EvidenceSlot[i].item.font);
+            draw_set_color(c_black);
+            draw_set_halign(fa_left);
+            draw_set_valign(fa_top);
+            draw_text_ext
+            (global.EvidenceSlot[i].x + global.EvidenceSlot[i].item.padding, 
+             global.EvidenceSlot[i].y + global.EvidenceSlot[i].item.padding, 
+             global.EvidenceSlot[i].item.text, 
+             global.EvidenceSlot[i].item.font_size+(global.EvidenceSlot[i].item.font_size/2), 
+             global.EvidenceSlot[i].item.maxLength);
         }
     }
 }
