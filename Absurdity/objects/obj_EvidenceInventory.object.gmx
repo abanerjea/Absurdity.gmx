@@ -33,9 +33,34 @@
 for (i = 0; i &lt; global.numberOfEvidence; i += 1)
 {
     global.EvidenceInventory[i] = instance_create(0, 0, obj_Item);
-    global.EvidenceInventory[i].type = 1;
-    global.EvidenceInventory[i].text = "Evidence ";
-    global.EvidenceInventory[i].slot = i;
+    if (file_exists("Save.sav"))
+    {
+        var name = "evidence" + string(i);
+        ini_open("Save.sav");
+        global.EvidenceInventory[i].type = ini_read_real(name, "type", 1);
+        global.EvidenceInventory[i].text = ini_read_string(name, "text", "Evidence");
+        global.EvidenceInventory[i].slot = ini_read_real(name, "slot", i);
+        global.EvidenceInventory[i].x = ini_read_real(name, "x", view_xview[0] + view_wview[0]/2 + 150);
+        global.EvidenceInventory[i].y = ini_read_real(name, "y", view_yview[0] + 200 + i * (32 + 50));
+        ini_close();
+    }
+    else
+    {
+        global.EvidenceInventory[i].type = 1;
+        global.EvidenceInventory[i].text = "Evidence ";
+        global.EvidenceInventory[i].slot = i;
+        
+        x1 = view_xview[0] + view_wview[0]/2;
+        y1 = view_yview[0];
+        x2 = view_xview[0] + view_wview[0];
+        y2 = view_yview[0] + view_hview[0];
+        
+        var ix = x1 + 150;
+        var iy = y1 + 200 + i * (32 + 50);
+        
+        global.EvidenceInventory[i].x = ix;
+        global.EvidenceInventory[i].y = iy;
+    }
 }
 </string>
           </argument>
@@ -101,12 +126,7 @@ if (global.showEvidenceInventory)
     draw_set_alpha(1);
     for (i = 0; i &lt; global.numberOfEvidence; i += 1)
     {
-        var ix = x1 + 150;
-        var iy = y1 + 200 + i * (32 + 50);
-        draw_sprite(spr_border, 0, ix, iy);
-        
-        global.EvidenceInventory[i].x = ix;
-        global.EvidenceInventory[i].y = iy;
+        draw_sprite(spr_border, 0, global.EvidenceInventory[i].x, global.EvidenceInventory[i].y);
     }   
 }
 

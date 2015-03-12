@@ -30,12 +30,42 @@
 */
 
 
-for (i = 0; i &lt; global.numberOfEvidence; i += 1)
+for (i = 0; i &lt; global.numberOfEvidenceSlot; i += 1)
 {
+    /***************
+    *read from file*
+    ****************/
     global.EvidenceSlot[i] = instance_create(0, 0, obj_Slot);
-    global.EvidenceSlot[i].acceptType = 1;
-    global.EvidenceSlot[i].correctAnswer = i;
-    
+    if (file_exists("Save.sav"))
+    {
+        var label = "evidence_slot" + string(i); 
+        ini_open("Save.sav");
+        
+        global.EvidenceSlot[i].item.type = ini_read_real(label,"type",0);
+        global.EvidenceSlot[i].item.text = ini_read_string(label,"text","");
+        global.EvidenceSlot[i].item.slot = ini_read_real(label,"slot",-1);
+        global.EvidenceSlot[i].acceptType = ini_read_real(label,"acceptType",1);
+        global.EvidenceSlot[i].correctAnswer = ini_read_real(label,"correctAnswer",i);
+        global.EvidenceSlot[i].x = ini_read_real(label, "x", view_xview[0] + 200);
+        global.EvidenceSlot[i].y = ini_read_real(label, "y", view_yview[0] + 200 + i * (32 + 50));
+        
+        ini_close();
+    }
+    else
+    {
+        x1 = view_xview[0];
+        y1 = view_yview[0];
+        x2 = view_xview[0] + view_wview[0]/2;
+        y2 = view_yview[0] + view_hview[0];
+        
+        var ix = x1 + 200;
+        var iy = y1 + 200 + i * (32 + 50);
+        
+        global.EvidenceSlot[i].acceptType = 1;
+        global.EvidenceSlot[i].correctAnswer = i;
+        global.EvidenceSlot[i].x = ix;
+        global.EvidenceSlot[i].y = iy;
+    }
     
     //test
     //global.EvidenceSlot[i].item.type = 1;
@@ -122,22 +152,13 @@ if (global.showProofSlots)
             <kind>1</kind>
             <string>/*
 *   Draw Proof Slots for Evidence
-*   Check anwser
 */
 if (global.showProofSlots)
 {
-    /**********************************
-    * this part should read from file *
-    ***********************************/
     draw_set_alpha(1);
-    for (i = 0; i &lt; global.numberOfEvidence; i += 1)
+    for (i = 0; i &lt; global.numberOfEvidenceSlot; i += 1)
     {
-        var ix = x1 + 200;
-        var iy = y1 + 200 + i * (32 + 50);
-        draw_sprite(spr_border, 0, ix, iy);
-        
-        global.EvidenceSlot[i].x = ix;
-        global.EvidenceSlot[i].y = iy;
+        draw_sprite(spr_border, 0, global.EvidenceSlot[i].x, global.EvidenceSlot[i].y);
     }   
 }
 </string>
@@ -167,7 +188,7 @@ if (global.showProofSlots)
 if (global.showProofSlots)
 {
     draw_set_alpha(0.4);
-    for (i = 0; i &lt; global.numberOfEvidence; i += 1)
+    for (i = 0; i &lt; global.numberOfEvidenceSlot; i += 1)
     {
         // if the slot is not empty
         if (global.EvidenceSlot[i].item.type == 1)
@@ -215,7 +236,7 @@ if (global.showProofSlots)
 {
     draw_set_alpha(0.6);
     draw_set_colour(c_white);
-    for (i = 0; i &lt; global.numberOfEvidence; i += 1)
+    for (i = 0; i &lt; global.numberOfEvidenceSlot; i += 1)
     {
         var temp_x = global.EvidenceSlot[i].x;
         var temp_y = global.EvidenceSlot[i].y;
@@ -252,7 +273,7 @@ if (global.showProofSlots)
 if (global.showProofSlots)
 {
     draw_set_alpha(1);
-    for (i = 0; i &lt; global.numberOfEvidence; i += 1)
+    for (i = 0; i &lt; global.numberOfEvidenceSlot; i += 1)
     {
         if (global.EvidenceSlot[i].item.type != 0)
         {

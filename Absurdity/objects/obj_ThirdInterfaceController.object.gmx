@@ -32,6 +32,7 @@
 global.showEvidenceInventory = true;
 global.showProofSlots = true;
 global.numberOfEvidence = 4;
+global.numberOfEvidenceSlot = 4;
 global.mouseItem = instance_create(0, 0, obj_Item);
 </string>
           </argument>

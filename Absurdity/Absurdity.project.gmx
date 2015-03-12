@@ -27,13 +27,16 @@
   <paths name="paths"/>
   <scripts name="scripts">
     <scripts name="General">
-      <script>scripts\scr_TestScript.gml</script>
+      <script>scripts\scr_save.gml</script>
     </scripts>
     <scripts name="Third Interface">
       <script>scripts\scr_MouseClick.gml</script>
       <script>scripts\scr_SwapItem.gml</script>
     </scripts>
   </scripts>
+  <fonts name="fonts">
+    <font>fonts\ft_ComicSansMS</font>
+  </fonts>
   <objects name="objects">
     <objects name="General">
       <object>objects\obj_FadeInOut</object>
