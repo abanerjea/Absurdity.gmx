@@ -29,7 +29,7 @@
 * Save game status
 */
 
-scr_save();
+//scr_save();
 </string>
           </argument>
         </arguments>

@@ -75,7 +75,7 @@ for (i = 0; i &lt; global.numberOfEvidence; i += 1)
                 
         text_width = string_width_ext(text, font_size+(font_size/2), maxLength);
         text_height = string_height_ext(text, font_size+(font_size/2), maxLength);
-                
+            
         boxWidth = text_width + padding * 2;
         boxHeight = text_height + padding * 2
     }
@@ -144,49 +144,28 @@ if (global.showEvidenceInventory)
 if (global.showEvidenceInventory)
 {
     draw_set_alpha(1);
+    var border = 2;
     for (i = 0; i &lt; global.numberOfEvidence; i += 1)
     {
-        draw_sprite(spr_border, 0, global.EvidenceInventory[i].x, global.EvidenceInventory[i].y);
+        //draw_sprite(spr_border, 0, global.EvidenceInventory[i].x, global.EvidenceInventory[i].y);
+        draw_set_color(c_black);
+        draw_rectangle
+        (global.EvidenceInventory[i].x-border, 
+        global.EvidenceInventory[i].y-border, 
+        global.EvidenceInventory[i].x + global.EvidenceInventory[i].boxWidth+border, 
+        global.EvidenceInventory[i].y + global.EvidenceInventory[i].boxHeight+border, 
+        0);
+        draw_set_color(c_gray);
+        draw_rectangle
+        (global.EvidenceInventory[i].x-border, 
+        global.EvidenceInventory[i].y-border, 
+        global.EvidenceInventory[i].x + global.EvidenceInventory[i].boxWidth+border, 
+        global.EvidenceInventory[i].y + global.EvidenceInventory[i].boxHeight+border, 
+        border);
+        //show_message(string(global.EvidenceInventory[i].boxWidth));
     }   
 }
 
-</string>
-          </argument>
-        </arguments>
-      </action>
-      <action>
-        <libid>1</libid>
-        <id>603</id>
-        <kind>7</kind>
-        <userelative>0</userelative>
-        <isquestion>0</isquestion>
-        <useapplyto>-1</useapplyto>
-        <exetype>2</exetype>
-        <functionname></functionname>
-        <codestring></codestring>
-        <whoName>self</whoName>
-        <relative>0</relative>
-        <isnot>0</isnot>
-        <arguments>
-          <argument>
-            <kind>1</kind>
-            <string>/*
-*   Highlight Evidence Slot
-*/
-if (global.showEvidenceInventory)
-{
-    draw_set_alpha(0.6);
-    draw_set_colour(c_white);
-    for (i = 0; i &lt; global.numberOfEvidence; i += 1)
-    {
-        var temp_x = global.EvidenceInventory[i].x;
-        var temp_y = global.EvidenceInventory[i].y;
-        if (abs(mouse_x - temp_x) &lt; 16) &amp;&amp; (abs(mouse_y - temp_y) &lt; 16)
-        {
-            draw_rectangle(temp_x - 16, temp_y - 16, temp_x + 16, temp_y + 16, 0);
-        }
-    }
-}
 </string>
           </argument>
         </arguments>
@@ -238,6 +217,48 @@ if (global.showEvidenceInventory)
              global.EvidenceInventory[i].maxLength);
         }
     }
+}
+</string>
+          </argument>
+        </arguments>
+      </action>
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>/*
+*   Highlight Evidence Slot
+*/
+if (global.showEvidenceInventory)
+{
+    draw_set_alpha(0.4);
+    draw_set_colour(c_white);
+    for (i = 0; i &lt; global.numberOfEvidence; i += 1)
+    {
+        var temp_x = global.EvidenceInventory[i].x;
+        var temp_y = global.EvidenceInventory[i].y;
+        var temp_boxWidth = global.EvidenceInventory[i].boxWidth;
+        var temp_boxHeight = global.EvidenceInventory[i].boxHeight;
+        if (mouse_x &gt;= temp_x &amp;&amp; mouse_x &lt;= temp_x + temp_boxWidth)
+        &amp;&amp; (mouse_y &gt;= temp_y &amp;&amp; mouse_y &lt;= temp_y + temp_boxHeight)
+        {
+            draw_rectangle(temp_x, temp_y, temp_x + temp_boxWidth, temp_y + temp_boxHeight, 0);
+        }
+    
+    }
+    draw_set_alpha(1);
 }
 </string>
           </argument>

@@ -18,8 +18,8 @@ argument1.slot = argument0.slot;
 argument1.padding = argument0.padding;
 argument1.maxLength = argument0.maxLength;
 argument1.font = argument0.font;
-//argument1.boxWidth = argument0.boxWidth;
-//argument1.boxHeight = argument0.boxHeight;
+argument1.boxWidth = argument0.boxWidth;
+argument1.boxHeight = argument0.boxHeight;
 
 argument0.type = temp_type;
 argument0.text = temp_text;

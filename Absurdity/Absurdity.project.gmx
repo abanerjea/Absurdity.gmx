@@ -33,6 +33,8 @@
       <script>scripts\scr_MouseClick.gml</script>
       <script>scripts\scr_SwapItem.gml</script>
       <script>scripts\scr_DrawText.gml</script>
+      <script>scripts\scr_CheckAnswer.gml</script>
+      <script>scripts\scr_SwapItem_ext.gml</script>
     </scripts>
   </scripts>
   <fonts name="fonts">

@@ -8,6 +8,8 @@ ini_write_real("global","showEvidenceInventory",global.showEvidenceInventory);
 ini_write_real("global","showProofSlots",global.showProofSlots);
 ini_write_real("global","numberOfEvidence", global.numberOfEvidence);
 ini_write_real("global","numberOfEvidenceSlot", global.numberOfEvidenceSlot);
+ini_write_real("global","boxWidth",global.boxWidth);
+ini_write_real("global","boxHeight",global.boxHeight);
 
 //Save Evidence Inventory
 for (i = 0; i < global.numberOfEvidence; i++)

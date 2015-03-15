@@ -170,9 +170,44 @@ if (global.showProofSlots)
 if (global.showProofSlots)
 {
     draw_set_alpha(1);
+    var border = 2;
     for (i = 0; i &lt; global.numberOfEvidenceSlot; i += 1)
     {
-        draw_sprite(spr_border, 0, global.EvidenceSlot[i].x, global.EvidenceSlot[i].y);
+        if (global.EvidenceSlot[i].item.type != 0)
+        {
+            draw_set_color(c_olive);
+            draw_rectangle
+            (global.EvidenceSlot[i].x-border, 
+            global.EvidenceSlot[i].y-border, 
+            global.EvidenceSlot[i].x + global.EvidenceSlot[i].item.boxWidth+border, 
+            global.EvidenceSlot[i].y + global.EvidenceSlot[i].item.boxHeight+border, 
+            0);
+            draw_set_color(c_black);
+            draw_rectangle
+            (global.EvidenceSlot[i].x-border, 
+            global.EvidenceSlot[i].y-border, 
+            global.EvidenceSlot[i].x + global.EvidenceSlot[i].item.boxWidth+border, 
+            global.EvidenceSlot[i].y + global.EvidenceSlot[i].item.boxHeight+border, 
+            border);
+        }
+        else
+        {
+            draw_set_color(c_olive);
+            draw_rectangle
+            (global.EvidenceSlot[i].x-border, 
+            global.EvidenceSlot[i].y-border, 
+            global.EvidenceSlot[i].x + global.boxWidth+border, 
+            global.EvidenceSlot[i].y + global.boxHeight+border, 
+            0);
+            draw_set_color(c_black);
+            draw_rectangle
+            (global.EvidenceSlot[i].x-border, 
+            global.EvidenceSlot[i].y-border, 
+            global.EvidenceSlot[i].x + global.boxWidth+border, 
+            global.EvidenceSlot[i].y + global.boxHeight+border, 
+            border);
+        }
+        //draw_sprite(spr_border, 0, global.EvidenceSlot[i].x, global.EvidenceSlot[i].y);
     }   
 }
 </string>
@@ -201,7 +236,8 @@ if (global.showProofSlots)
 
 if (global.showProofSlots)
 {
-    draw_set_alpha(0.4);
+    draw_set_alpha(1);
+    var border = 4;
     for (i = 0; i &lt; global.numberOfEvidenceSlot; i += 1)
     {
         // if the slot is not empty
@@ -209,6 +245,8 @@ if (global.showProofSlots)
         {
             var temp_x = global.EvidenceSlot[i].x;
             var temp_y = global.EvidenceSlot[i].y;
+            var temp_boxWidth = global.EvidenceSlot[i].item.boxWidth;
+            var temp_boxHeight = global.EvidenceSlot[i].item.boxHeight;
             // if item match correct answer, mark green
             if (global.EvidenceSlot[i].item.slot == global.EvidenceSlot[i].correctAnswer)
             {
@@ -219,44 +257,7 @@ if (global.showProofSlots)
             {
                 draw_set_colour(c_red);
             }
-            draw_rectangle(temp_x - 16, temp_y - 16, temp_x + 16, temp_y + 16, 0);
-        }
-    }
-}
-</string>
-          </argument>
-        </arguments>
-      </action>
-      <action>
-        <libid>1</libid>
-        <id>603</id>
-        <kind>7</kind>
-        <userelative>0</userelative>
-        <isquestion>0</isquestion>
-        <useapplyto>-1</useapplyto>
-        <exetype>2</exetype>
-        <functionname></functionname>
-        <codestring></codestring>
-        <whoName>self</whoName>
-        <relative>0</relative>
-        <isnot>0</isnot>
-        <arguments>
-          <argument>
-            <kind>1</kind>
-            <string>/*
-*   Highlight Evidence Slot
-*/
-if (global.showProofSlots)
-{
-    draw_set_alpha(0.6);
-    draw_set_colour(c_white);
-    for (i = 0; i &lt; global.numberOfEvidenceSlot; i += 1)
-    {
-        var temp_x = global.EvidenceSlot[i].x;
-        var temp_y = global.EvidenceSlot[i].y;
-        if (abs(mouse_x - temp_x) &lt; 16) &amp;&amp; (abs(mouse_y - temp_y) &lt; 16)
-        {
-            draw_rectangle(temp_x - 16, temp_y - 16, temp_x + 16, temp_y + 16, 0);
+            draw_rectangle(temp_x-border, temp_y-border, temp_x + temp_boxWidth+border, temp_y + temp_boxHeight+border, 0);
         }
     }
 }
@@ -311,6 +312,47 @@ if (global.showProofSlots)
              global.EvidenceSlot[i].item.maxLength);
         }
     }
+}
+</string>
+          </argument>
+        </arguments>
+      </action>
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>/*
+*   Highlight Evidence Slot
+*/
+if (global.showProofSlots)
+{
+    draw_set_alpha(0.4);
+    draw_set_colour(c_white);
+    for (i = 0; i &lt; global.numberOfEvidenceSlot; i += 1)
+    {
+        var temp_x = global.EvidenceSlot[i].x;
+        var temp_y = global.EvidenceSlot[i].y;
+        var temp_boxWidth = global.EvidenceSlot[i].item.boxWidth;
+        var temp_boxHeight = global.EvidenceSlot[i].item.boxHeight;
+        if (mouse_x &gt;= temp_x &amp;&amp; mouse_x &lt;= temp_x + temp_boxWidth)
+        &amp;&amp; (mouse_y &gt;= temp_y &amp;&amp; mouse_y &lt;= temp_y + temp_boxHeight)
+        {
+            draw_rectangle(temp_x, temp_y, temp_x + temp_boxWidth, temp_y + temp_boxHeight, 0);
+        }
+    }
+    draw_set_alpha(1);
 }
 </string>
           </argument>

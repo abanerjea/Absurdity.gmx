@@ -10,8 +10,11 @@ if (mouse_check_button_released(mb_left))
     {
         var temp_x = global.EvidenceInventory[i].x;
         var temp_y = global.EvidenceInventory[i].y;
+        var temp_boxWidth = global.EvidenceInventory[i].boxWidth;
+        var temp_boxHeight = global.EvidenceInventory[i].boxHeight;
         // if click in Evidence Inventory
-        if (abs(mouse_x - temp_x) < 16) && (abs(mouse_y - temp_y) < 16)
+        if (mouse_x >= temp_x && mouse_x <= temp_x + temp_boxWidth)
+        && (mouse_y >= temp_y && mouse_y <= temp_y + temp_boxHeight)
         {
             // if mouse item does not belong to this slot, put it back then pick up this item
             if (global.mouseItem.type != 0) && (global.mouseItem.slot != i)
@@ -33,9 +36,12 @@ if (mouse_check_button_released(mb_left))
     {
         var temp_x = global.EvidenceSlot[i].x;
         var temp_y = global.EvidenceSlot[i].y;
+        var temp_boxWidth = global.EvidenceSlot[i].item.boxWidth;
+        var temp_boxHeight = global.EvidenceSlot[i].item.boxHeight;
         
         // if click in Proof Slot
-        if (abs(mouse_x - temp_x) < 16) && (abs(mouse_y - temp_y) < 16)
+        if (mouse_x >= temp_x && mouse_x <= temp_x + temp_boxWidth)
+        && (mouse_y >= temp_y && mouse_y <= temp_y + temp_boxHeight)
         {
             // if mouse item isn't empty && mouse item and item in slot doesn't match, show message.
             if (global.mouseItem.type != 0) && (global.mouseItem.type != global.EvidenceSlot[i].acceptType)
@@ -44,7 +50,13 @@ if (mouse_check_button_released(mb_left))
             }
             // else, swap;
             else {
-                scr_SwapItem(global.mouseItem, global.EvidenceSlot[i].item);
+                scr_SwapItem_ext(global.mouseItem, global.EvidenceSlot[i].item);
+            }
+            
+            //Check answer
+            if (scr_CheckAnswer())
+            {
+                show_message("Congratulations, you did it!");
             }
             return(1);
         }

@@ -29,10 +29,25 @@
 *   Declare Global Variables
 */
 
-global.showEvidenceInventory = true;
-global.showProofSlots = true;
-global.numberOfEvidence = 4;
-global.numberOfEvidenceSlot = 4;
+if (file_exists("Save.save"))
+{
+    ini_open("Save.save");
+    global.showEvidenceInventory = ini_read_real("global","showEvidenceInventory",true);
+    global.showProofSlots = ini_read_real("global","showProofSlots",true);
+    global.numberOfEvidence = ini_read_real("global","numberOfEvidence",4);
+    global.numberOfEvidenceSlot = ini_read_real("global","numberOfEvidenceSlot",4);
+    global.boxWidth = ini_read_real("global","boxWidth",32);
+    global.boxHeight = ini_read_real("global","boxHeight",32);
+}
+else
+{
+    global.showEvidenceInventory = true;
+    global.showProofSlots = true;
+    global.numberOfEvidence = 4;
+    global.numberOfEvidenceSlot = 4;
+    global.boxWidth = 32;
+    global.boxHeight = 32
+}
 global.mouseItem = instance_create(0, 0, obj_Item);
 with (global.mouseItem)
 {
