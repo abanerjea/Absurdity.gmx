@@ -349,7 +349,14 @@ if (global.showProofSlots)
         if (mouse_x &gt;= temp_x &amp;&amp; mouse_x &lt;= temp_x + temp_boxWidth)
         &amp;&amp; (mouse_y &gt;= temp_y &amp;&amp; mouse_y &lt;= temp_y + temp_boxHeight)
         {
-            draw_rectangle(temp_x, temp_y, temp_x + temp_boxWidth, temp_y + temp_boxHeight, 0);
+            if (global.EvidenceSlot[i].item.type != 0)
+            {
+                draw_rectangle(temp_x, temp_y, temp_x + temp_boxWidth, temp_y + temp_boxHeight, 0);
+            }
+            else
+            {
+                draw_rectangle(temp_x, temp_y, temp_x + global.boxWidth, temp_y + global.boxHeight, 0);
+            }
         }
     }
     draw_set_alpha(1);
