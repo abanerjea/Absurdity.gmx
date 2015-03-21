@@ -62,6 +62,7 @@
       <object>objects\obj_ProofSlots</object>
       <object>objects\obj_ThirdInterfaceController</object>
       <object>objects\obj_BackButton</object>
+      <object>objects\obj_Relation</object>
     </objects>
   </objects>
   <rooms name="rooms">

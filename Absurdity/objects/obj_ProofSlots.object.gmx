@@ -32,14 +32,13 @@
 
 for (i = 0; i &lt; global.numberOfEvidenceSlot; i += 1)
 {
-    /***************
-    *read from file*
-    ****************/
+    // Create Proof Slots
     global.EvidenceSlot[i] = instance_create(0, 0, obj_Slot);
+    // Load global variables and fields from file
     if (file_exists("Save.sav"))
     {
-        var label = "evidence_slot" + string(i); 
-        ini_open("Save.sav");
+        var label = "evidence_slot" + string(i); //generate proof slot name
+        ini_open("Save.sav");   //open file
         
         global.EvidenceSlot[i].item.type = ini_read_real(label,"type",0);
         global.EvidenceSlot[i].item.text = ini_read_string(label,"text","");
@@ -49,8 +48,9 @@ for (i = 0; i &lt; global.numberOfEvidenceSlot; i += 1)
         global.EvidenceSlot[i].x = ini_read_real(label, "x", view_xview[0] + 200);
         global.EvidenceSlot[i].y = ini_read_real(label, "y", view_yview[0] + 200 + i * (32 + 50));
         
-        ini_close();
+        ini_close();    // close file
     }
+    // set default value
     else
     {
         x1 = view_xview[0];
@@ -66,7 +66,7 @@ for (i = 0; i &lt; global.numberOfEvidenceSlot; i += 1)
         global.EvidenceSlot[i].x = ix;
         global.EvidenceSlot[i].y = iy;
     }
-    
+    // calculate text box size for proof slots
     with (global.EvidenceSlot[i].item)
     {
         padding = 16;
@@ -112,6 +112,57 @@ for (i = 0; i &lt; global.numberOfEvidenceSlot; i += 1)
           </argument>
         </arguments>
       </action>
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>/*
+*   Load relation
+*/
+
+// read rule from file
+if (file_exists("Save.sav"))
+{
+    ini_open("Save.sav");
+    
+    for (i = 0; i &lt; global.numberOfRelation; i += 1)
+    {
+        var label = "rule" + string(i);
+        global.Relation[i] = instance_create(0, 0, obj_Relation);
+        
+        global.Relation[i].from = ini_read_real(label,"from",-1);
+        global.Relation[i].to = ini_read_real(label, "to", -1);
+    }
+    
+    ini_close();
+}
+// set default value
+else
+{
+    for (i = 0; i &lt; global.numberOfRelation; i += 1)
+    {
+        global.Relation[i] = instance_create(0, 0, obj_Relation);
+        
+        global.Relation[i].from = ini_read_real(label,"from",0);
+        global.Relation[i].to = ini_read_real(label, "to",0);
+    }
+}
+</string>
+          </argument>
+        </arguments>
+      </action>
     </event>
     <event eventtype="8" enumb="0">
       <action>
@@ -143,6 +194,102 @@ if (global.showProofSlots)
     draw_set_alpha(0.8);
     draw_set_colour(c_gray);
     draw_rectangle(x1, y1, x2, y2, 0);
+}
+</string>
+          </argument>
+        </arguments>
+      </action>
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>/*
+*   Draw Relation
+*/
+draw_set_color(c_blue);
+var arrow_length = 20;
+var line_strength = 5;
+for (i = 0; i &lt; global.numberOfRelation; i += 1)
+{
+    if (global.Relation[i].from &gt; -1 &amp;&amp; global.Relation[i].from &lt; global.numberOfEvidenceSlot)
+    &amp;&amp; (global.Relation[i].to &gt; -1 &amp;&amp; global.Relation[i].to &lt; global.numberOfEvidenceSlot)
+    {
+        draw_line_width(
+            global.EvidenceSlot[global.Relation[i].from].x+global.EvidenceSlot[global.Relation[i].from].item.boxWidth/2,
+            global.EvidenceSlot[global.Relation[i].from].y+global.EvidenceSlot[global.Relation[i].from].item.boxHeight,
+            global.EvidenceSlot[global.Relation[i].to].x+global.EvidenceSlot[global.Relation[i].to].item.boxWidth/2,
+            global.EvidenceSlot[global.Relation[i].to].y,
+            line_strength);
+        draw_arrow(
+            global.EvidenceSlot[global.Relation[i].from].x+global.EvidenceSlot[global.Relation[i].from].item.boxWidth/2,
+            global.EvidenceSlot[global.Relation[i].from].y+global.EvidenceSlot[global.Relation[i].from].item.boxHeight,
+            global.EvidenceSlot[global.Relation[i].to].x+global.EvidenceSlot[global.Relation[i].to].item.boxWidth/2,
+            global.EvidenceSlot[global.Relation[i].to].y,
+            arrow_length);
+    }
+}
+</string>
+          </argument>
+        </arguments>
+      </action>
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>/*
+*   Check and mark right or wrong
+*/
+
+if (global.showProofSlots)
+{
+    draw_set_alpha(1);
+    var border = 4;
+    for (i = 0; i &lt; global.numberOfEvidenceSlot; i += 1)
+    {
+        // if the slot is not empty
+        if (global.EvidenceSlot[i].item.type == 1)
+        {
+            var temp_x = global.EvidenceSlot[i].x;
+            var temp_y = global.EvidenceSlot[i].y;
+            var temp_boxWidth = global.EvidenceSlot[i].item.boxWidth;
+            var temp_boxHeight = global.EvidenceSlot[i].item.boxHeight;
+            // if item match correct answer, mark green
+            if (global.EvidenceSlot[i].item.slot == global.EvidenceSlot[i].correctAnswer)
+            {
+                draw_set_colour(c_green);
+            }
+            // else, mark red
+            else
+            {
+                draw_set_colour(c_red);
+            }
+            draw_rectangle(temp_x-border, temp_y-border, temp_x + temp_boxWidth+border, temp_y + temp_boxHeight+border, 0);
+        }
+    }
 }
 </string>
           </argument>
@@ -209,57 +356,6 @@ if (global.showProofSlots)
         }
         //draw_sprite(spr_border, 0, global.EvidenceSlot[i].x, global.EvidenceSlot[i].y);
     }   
-}
-</string>
-          </argument>
-        </arguments>
-      </action>
-      <action>
-        <libid>1</libid>
-        <id>603</id>
-        <kind>7</kind>
-        <userelative>0</userelative>
-        <isquestion>0</isquestion>
-        <useapplyto>-1</useapplyto>
-        <exetype>2</exetype>
-        <functionname></functionname>
-        <codestring></codestring>
-        <whoName>self</whoName>
-        <relative>0</relative>
-        <isnot>0</isnot>
-        <arguments>
-          <argument>
-            <kind>1</kind>
-            <string>/*
-*   Check and mark right or wrong
-*/
-
-if (global.showProofSlots)
-{
-    draw_set_alpha(1);
-    var border = 4;
-    for (i = 0; i &lt; global.numberOfEvidenceSlot; i += 1)
-    {
-        // if the slot is not empty
-        if (global.EvidenceSlot[i].item.type == 1)
-        {
-            var temp_x = global.EvidenceSlot[i].x;
-            var temp_y = global.EvidenceSlot[i].y;
-            var temp_boxWidth = global.EvidenceSlot[i].item.boxWidth;
-            var temp_boxHeight = global.EvidenceSlot[i].item.boxHeight;
-            // if item match correct answer, mark green
-            if (global.EvidenceSlot[i].item.slot == global.EvidenceSlot[i].correctAnswer)
-            {
-                draw_set_colour(c_green);
-            }
-            // else, mark red
-            else
-            {
-                draw_set_colour(c_red);
-            }
-            draw_rectangle(temp_x-border, temp_y-border, temp_x + temp_boxWidth+border, temp_y + temp_boxHeight+border, 0);
-        }
-    }
 }
 </string>
           </argument>

@@ -29,15 +29,17 @@
 *   Declare Global Variables
 */
 
-if (file_exists("Save.save"))
+if (file_exists("Save.sav"))
 {
-    ini_open("Save.save");
+    ini_open("Save.sav");
     global.showEvidenceInventory = ini_read_real("global","showEvidenceInventory",true);
     global.showProofSlots = ini_read_real("global","showProofSlots",true);
     global.numberOfEvidence = ini_read_real("global","numberOfEvidence",4);
     global.numberOfEvidenceSlot = ini_read_real("global","numberOfEvidenceSlot",4);
+    global.numberOfRelation = ini_read_real("global","numberOfRelation",3);
     global.boxWidth = ini_read_real("global","boxWidth",32);
     global.boxHeight = ini_read_real("global","boxHeight",32);
+    ini_close();
 }
 else
 {
@@ -45,6 +47,7 @@ else
     global.showProofSlots = true;
     global.numberOfEvidence = 4;
     global.numberOfEvidenceSlot = 4;
+    global.numberOfRelation = 3;
     global.boxWidth = 32;
     global.boxHeight = 32
 }
@@ -183,6 +186,29 @@ if (global.showEvidenceInventory)
         global.mouseItem.maxLength);
     }
 }
+</string>
+          </argument>
+        </arguments>
+      </action>
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>//draw_set_color(c_blue);
+//draw_line_width(0, 0, 80,80, 8);
+//draw_arrow(0, 0, 100,100,50);
 </string>
           </argument>
         </arguments>
