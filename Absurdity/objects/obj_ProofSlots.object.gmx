@@ -45,8 +45,8 @@ for (i = 0; i &lt; global.numberOfEvidenceSlot; i += 1)
         global.EvidenceSlot[i].item.slot = ini_read_real(label,"slot",-1);
         global.EvidenceSlot[i].acceptType = ini_read_real(label,"acceptType",1);
         global.EvidenceSlot[i].correctAnswer = ini_read_real(label,"correctAnswer",i);
-        global.EvidenceSlot[i].x = ini_read_real(label, "x", view_xview[0] + 200);
-        global.EvidenceSlot[i].y = ini_read_real(label, "y", view_yview[0] + 200 + i * (32 + 50));
+        global.EvidenceSlot[i].x = ini_read_real(label, "x", 0) + room_width/3 + 20;
+        global.EvidenceSlot[i].y = ini_read_real(label, "y", 0) + 100;
         
         ini_close();    // close file
     }
@@ -70,7 +70,7 @@ for (i = 0; i &lt; global.numberOfEvidenceSlot; i += 1)
     with (global.EvidenceSlot[i].item)
     {
         padding = 16;
-        maxLength = view_xview[0] + view_wview[0]/2;
+        maxLength = room_width/3;
         font = fnt_ComicSansMS;
                 
         text_length = string_length(text);
@@ -186,10 +186,10 @@ else
 */
 if (global.showProofSlots)
 {
-    x1 = view_xview[0];
-    y1 = view_yview[0];
-    x2 = view_xview[0] + view_wview[0]/2;
-    y2 = view_yview[0] + view_hview[0];
+    x1 = room_width/3;
+    y1 = 0;
+    x2 = room_width*3/4;
+    y2 = room_height;
     
     draw_set_alpha(0.8);
     draw_set_colour(c_gray);
@@ -227,15 +227,15 @@ for (i = 0; i &lt; global.numberOfRelation; i += 1)
     &amp;&amp; (global.Relation[i].to &gt; -1 &amp;&amp; global.Relation[i].to &lt; global.numberOfEvidenceSlot)
     {
         draw_line_width(
-            global.EvidenceSlot[global.Relation[i].from].x+global.EvidenceSlot[global.Relation[i].from].item.boxWidth/2,
-            global.EvidenceSlot[global.Relation[i].from].y+global.EvidenceSlot[global.Relation[i].from].item.boxHeight,
-            global.EvidenceSlot[global.Relation[i].to].x+global.EvidenceSlot[global.Relation[i].to].item.boxWidth/2,
+            global.EvidenceSlot[global.Relation[i].from].x,
+            global.EvidenceSlot[global.Relation[i].from].y,
+            global.EvidenceSlot[global.Relation[i].to].x,
             global.EvidenceSlot[global.Relation[i].to].y,
             line_strength);
         draw_arrow(
-            global.EvidenceSlot[global.Relation[i].from].x+global.EvidenceSlot[global.Relation[i].from].item.boxWidth/2,
-            global.EvidenceSlot[global.Relation[i].from].y+global.EvidenceSlot[global.Relation[i].from].item.boxHeight,
-            global.EvidenceSlot[global.Relation[i].to].x+global.EvidenceSlot[global.Relation[i].to].item.boxWidth/2,
+            global.EvidenceSlot[global.Relation[i].from].x,
+            global.EvidenceSlot[global.Relation[i].from].y,
+            global.EvidenceSlot[global.Relation[i].to].x,
             global.EvidenceSlot[global.Relation[i].to].y,
             arrow_length);
     }

@@ -40,8 +40,8 @@ for (i = 0; i &lt; global.numberOfEvidence; i += 1)
         global.EvidenceInventory[i].type = ini_read_real(name, "type", 1);
         global.EvidenceInventory[i].text = ini_read_string(name, "text", "Evidence");
         global.EvidenceInventory[i].slot = ini_read_real(name, "slot", i);
-        global.EvidenceInventory[i].x = ini_read_real(name, "x", view_xview[0] + view_wview[0]/2 + 150);
-        global.EvidenceInventory[i].y = ini_read_real(name, "y", view_yview[0] + 200 + i * (32 + 50));
+        global.EvidenceInventory[i].x = ini_read_real(name, "x", 0) + room_width*3/4 + 20;
+        global.EvidenceInventory[i].y = ini_read_real(name, "y", 0) + 100;
         ini_close();
     }
     else
@@ -50,10 +50,10 @@ for (i = 0; i &lt; global.numberOfEvidence; i += 1)
         global.EvidenceInventory[i].text = "Evidence ";
         global.EvidenceInventory[i].slot = i;
         
-        x1 = view_xview[0] + view_wview[0]/2;
-        y1 = view_yview[0];
-        x2 = view_xview[0] + view_wview[0];
-        y2 = view_yview[0] + view_hview[0];
+        x1 = room_width*2/3;
+        y1 = 0;
+        x2 = room_width;
+        y2 = room_height;
         
         var ix = x1 + 100;
         var iy = y1 + 150 + i * (32 + 50);
@@ -64,8 +64,8 @@ for (i = 0; i &lt; global.numberOfEvidence; i += 1)
     //Set Text info
     with (global.EvidenceInventory[i])
     {
-        padding = 16;
-        maxLength = view_xview[0] + view_wview[0]/2;
+        padding = 2;
+        maxLength = room_width/3;
         font = fnt_ComicSansMS;
                 
         text_length = string_length(text);
@@ -109,10 +109,10 @@ for (i = 0; i &lt; global.numberOfEvidence; i += 1)
 */
 if (global.showEvidenceInventory)
 {
-    x1 = view_xview[0] + view_wview[0]/2;
-    y1 = view_yview[0];
-    x2 = view_xview[0] + view_wview[0];
-    y2 = view_yview[0] + view_hview[0];
+    x1 = room_width*3/4;
+    y1 = 0;
+    x2 = room_width;
+    y2 = room_height;
     
     draw_set_alpha(0.8);
     draw_set_colour(c_black);

@@ -57,12 +57,15 @@
     </objects>
     <objects name="Third Interface">
       <object>objects\obj_EvidenceInventory</object>
-      <object>objects\obj_Item</object>
-      <object>objects\obj_Slot</object>
       <object>objects\obj_ProofSlots</object>
       <object>objects\obj_ThirdInterfaceController</object>
       <object>objects\obj_BackButton</object>
-      <object>objects\obj_Relation</object>
+      <object>objects\obj_ProofGraph</object>
+      <objects name="objs">
+        <object>objects\obj_Item</object>
+        <object>objects\obj_Relation</object>
+        <object>objects\obj_Slot</object>
+      </objects>
     </objects>
   </objects>
   <rooms name="rooms">
