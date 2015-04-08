@@ -28,7 +28,180 @@
             <string>/********************
 *   Load graph
 *********************/
-
+for (i = 0; i &lt; global.numberOfLogic; i += 1)
+{
+    global.ProofGraph[i] = instance_create(0, 0, obj_Item);
+    
+    if (file_exists("Save.sav"))
+    {
+        var name = "logic" + string(i);
+        ini_open("Save.sav");
+        global.ProofGraph[i].type = ini_read_real(name, "type", 1);
+        global.ProofGraph[i].text = ini_read_string(name, "text", "Evidence");
+        global.ProofGraph[i].slot = ini_read_real(name, "slot", i);
+        global.ProofGraph[i].x = ini_read_real(name, "x", 0) + 20;
+        global.ProofGraph[i].y = ini_read_real(name, "y", 0) + 100;
+        ini_close();
+    }
+    else
+    {
+        global.ProofGraph[i].type = 1;
+        global.ProofGraph[i].text = "Logic ";
+        global.ProofGraph[i].slot = i;
+        global.ProofGraph[i].x = 0;
+        global.ProofGraph[i].y = 0;
+    }
+    
+    with (global.ProofGraph[i])
+    {
+        padding = 5;
+        maxLength = room_width/3;
+        font = fnt_ComicSansMS;
+                
+        text_length = string_length(text);
+        font_size = font_get_size(font);
+                
+        draw_set_font(font);
+                
+        text_width = string_width_ext(text, font_size+(font_size/2), maxLength);
+        text_height = string_height_ext(text, font_size+(font_size/2), maxLength);
+            
+        boxWidth = text_width + padding * 2;
+        boxHeight = text_height + padding * 2
+    }
+}
+</string>
+          </argument>
+        </arguments>
+      </action>
+    </event>
+    <event eventtype="8" enumb="0">
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>/**************
+*   Draw Proof Graph Background
+***************/
+if (global.showProofGraph)
+{
+    x1 = 0;
+    y1 = 0;
+    x2 = room_width/3;
+    y2 = room_height;
+    
+    draw_set_alpha(0.8);
+    draw_set_colour(c_black);
+    draw_rectangle(x1, y1, x2, y2, 0);
+}
+</string>
+          </argument>
+        </arguments>
+      </action>
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>/*
+*   Draw Relation
+*/
+draw_set_color(c_blue);
+var arrow_length = 20;
+var line_strength = 5;
+for (i = 0; i &lt; global.numberOfRelation; i += 1)
+{
+    if (global.Relation[i].from &gt; -1 &amp;&amp; global.Relation[i].from &lt; global.numberOfLogic)
+    &amp;&amp; (global.Relation[i].to &gt; -1 &amp;&amp; global.Relation[i].to &lt; global.numberOfLogic)
+    {
+        draw_line_width(
+            global.ProofGraph[global.Relation[i].from].x,
+            global.ProofGraph[global.Relation[i].from].y,
+            global.ProofGraph[global.Relation[i].to].x,
+            global.ProofGraph[global.Relation[i].to].y,
+            line_strength);
+        draw_arrow(
+            global.ProofGraph[global.Relation[i].from].x,
+            global.ProofGraph[global.Relation[i].from].y,
+            global.ProofGraph[global.Relation[i].to].x,
+            global.ProofGraph[global.Relation[i].to].y,
+            arrow_length);
+    }
+}
+</string>
+          </argument>
+        </arguments>
+      </action>
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>/*****************
+*   Draw Logic proof
+******************/
+if (global.showProofGraph)
+{
+    draw_set_alpha(1);
+    for (i = 0; i &lt; global.numberOfLogic; i += 1)
+    {
+        if (global.ProofGraph[i].type != 0)
+        {
+            draw_set_color(c_olive);
+            draw_rectangle
+            (global.ProofGraph[i].x,
+             global.ProofGraph[i].y,
+             global.ProofGraph[i].x + global.ProofGraph[i].boxWidth, 
+             global.ProofGraph[i].y + global.ProofGraph[i].boxHeight, 
+             0);
+            
+            draw_set_font(global.ProofGraph[i].font);
+            draw_set_color(c_black);
+            draw_set_halign(fa_left);
+            draw_set_valign(fa_top);
+            draw_text_ext
+            (global.ProofGraph[i].x + global.ProofGraph[i].padding, 
+             global.ProofGraph[i].y + global.ProofGraph[i].padding, 
+             global.ProofGraph[i].text, 
+             global.ProofGraph[i].font_size+(global.ProofGraph[i].font_size/2), 
+             global.ProofGraph[i].maxLength);
+        }
+    }
+}
 </string>
           </argument>
         </arguments>

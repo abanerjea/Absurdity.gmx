@@ -34,6 +34,7 @@ if (file_exists("Save.sav"))
     ini_open("Save.sav");
     global.showEvidenceInventory = ini_read_real("global","showEvidenceInventory",true);
     global.showProofSlots = ini_read_real("global","showProofSlots",true);
+    global.showProofGraph = ini_read_real("global","showProofGraph",true);
     global.numberOfEvidence = ini_read_real("global","numberOfEvidence",4);
     global.numberOfEvidenceSlot = ini_read_real("global","numberOfEvidenceSlot",4);
     global.numberOfRelation = ini_read_real("global","numberOfRelation",3);
@@ -46,6 +47,7 @@ else
 {
     global.showEvidenceInventory = true;
     global.showProofSlots = true;
+    global.showProofGraph = true;
     global.numberOfEvidence = 4;
     global.numberOfEvidenceSlot = 4;
     global.numberOfRelation = 3;
