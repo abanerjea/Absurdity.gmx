@@ -16,12 +16,16 @@
     </sprites>
     <sprites name="Second Interface">
       <sprite>sprites\spr_skip</sprite>
+      <sprite>sprites\intro_video</sprite>
+      <sprite>sprites\proof_1_video</sprite>
     </sprites>
     <sprites name="Third Interface">
       <sprite>sprites\spr_border</sprite>
       <sprite>sprites\spr_items</sprite>
       <sprite>sprites\spr_back</sprite>
     </sprites>
+    <sprite>sprites\sprite10</sprite>
+    <sprite>sprites\sprite12</sprite>
   </sprites>
   <backgrounds name="background"/>
   <paths name="paths"/>
@@ -54,6 +58,8 @@
     </objects>
     <objects name="Second Interface">
       <object>objects\obj_SkipButton</object>
+      <object>objects\obj_intro_video</object>
+      <object>objects\obj_proof_1_video</object>
     </objects>
     <objects name="Third Interface">
       <object>objects\obj_EvidenceInventory</object>
@@ -66,6 +72,7 @@
         <object>objects\obj_Relation</object>
         <object>objects\obj_Slot</object>
       </objects>
+      <object>objects\object16</object>
     </objects>
   </objects>
   <rooms name="rooms">
