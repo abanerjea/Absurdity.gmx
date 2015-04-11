@@ -54,10 +54,12 @@ if (mouse_check_button_released(mb_left))
             }
             
             //Check answer
+            /*
             if (scr_CheckAnswer())
             {
                 show_message("Congratulations, you did it!");
             }
+            */
             return(1);
         }
     }

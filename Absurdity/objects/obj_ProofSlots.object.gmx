@@ -66,6 +66,7 @@ for (i = 0; i &lt; global.numberOfEvidenceSlot; i += 1)
         global.EvidenceSlot[i].x = ix;
         global.EvidenceSlot[i].y = iy;
     }
+    global.EvidenceSlot[i].color = c_black;
     // calculate text box size for proof slots
     with (global.EvidenceSlot[i].item)
     {
@@ -278,6 +279,7 @@ if (global.showProofSlots)
             var temp_boxWidth = global.EvidenceSlot[i].item.boxWidth;
             var temp_boxHeight = global.EvidenceSlot[i].item.boxHeight;
             // if item match correct answer, mark green
+            /*
             if (global.EvidenceSlot[i].item.slot == global.EvidenceSlot[i].correctAnswer)
             {
                 draw_set_colour(c_green);
@@ -287,6 +289,8 @@ if (global.showProofSlots)
             {
                 draw_set_colour(c_red);
             }
+            */
+            draw_set_colour(global.EvidenceSlot[i].color);
             draw_rectangle(temp_x-border, temp_y-border, temp_x + temp_boxWidth+border, temp_y + temp_boxHeight+border, 0);
         }
     }

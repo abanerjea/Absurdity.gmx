@@ -3,7 +3,28 @@
   <Configs name="configs">
     <Config>Configs\Default</Config>
   </Configs>
-  <NewExtensions/>
+  <datafiles number="2" name="datafiles">
+    <datafile>
+      <name>Example_Paul.wmv</name>
+      <exists>-1</exists>
+      <size>11543583</size>
+      <exportAction>2</exportAction>
+      <exportDir></exportDir>
+      <overwrite>0</overwrite>
+      <freeData>-1</freeData>
+      <removeEnd>0</removeEnd>
+      <store>0</store>
+      <ConfigOptions>
+        <Config name="Default">
+          <CopyToMask>9223372036854775807</CopyToMask>
+        </Config>
+      </ConfigOptions>
+      <filename>Example_Paul.wmv</filename>
+    </datafile>
+  </datafiles>
+  <NewExtensions>
+    <extension index="0">extensions\GMMovie</extension>
+  </NewExtensions>
   <sounds name="sound"/>
   <sprites name="sprites">
     <sprites name="First Interface">
@@ -13,6 +34,9 @@
       <sprite>sprites\spr_button4</sprite>
       <sprite>sprites\spr_button5</sprite>
       <sprite>sprites\spr_title</sprite>
+      <sprite>sprites\spr_star_1</sprite>
+      <sprite>sprites\spr_star_2</sprite>
+      <sprite>sprites\spr_star_3</sprite>
     </sprites>
     <sprites name="Second Interface">
       <sprite>sprites\spr_skip</sprite>
@@ -21,6 +45,7 @@
       <sprite>sprites\spr_border</sprite>
       <sprite>sprites\spr_items</sprite>
       <sprite>sprites\spr_back</sprite>
+      <sprite>sprites\spr_check</sprite>
     </sprites>
   </sprites>
   <backgrounds name="background"/>
@@ -43,6 +68,7 @@
   <objects name="objects">
     <objects name="General">
       <object>objects\obj_FadeInOut</object>
+      <object>objects\obj_GeneralControler</object>
     </objects>
     <objects name="First Interface">
       <object>objects\obj_Button1</object>
@@ -51,9 +77,12 @@
       <object>objects\obj_Button4</object>
       <object>objects\obj_Button5</object>
       <object>objects\obj_Title</object>
+      <object>objects\obj_Star</object>
+      <object>objects\obj_FirstInterfaceController</object>
     </objects>
     <objects name="Second Interface">
       <object>objects\obj_SkipButton</object>
+      <object>objects\obj_video</object>
     </objects>
     <objects name="Third Interface">
       <object>objects\obj_EvidenceInventory</object>
@@ -66,6 +95,7 @@
         <object>objects\obj_Relation</object>
         <object>objects\obj_Slot</object>
       </objects>
+      <object>objects\obj_CheckButton</object>
     </objects>
   </objects>
   <rooms name="rooms">

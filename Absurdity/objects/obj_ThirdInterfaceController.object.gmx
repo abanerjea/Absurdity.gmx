@@ -41,6 +41,7 @@ if (file_exists("Save.sav"))
     global.numberOfLogic = ini_read_real("global","numberOfLogic",4);
     global.boxWidth = ini_read_real("global","boxWidth",32);
     global.boxHeight = ini_read_real("global","boxHeight",32);
+    global.numberOfLevel = ini_read_real("global","numberOfLevel",3);
     ini_close();
 }
 else
@@ -51,6 +52,7 @@ else
     global.numberOfEvidence = 4;
     global.numberOfEvidenceSlot = 4;
     global.numberOfRelation = 3;
+    global.numberOfLevel = 3;
     global.numberOfLogic = 4;
     global.boxWidth = 32;
     global.boxHeight = 32
@@ -73,6 +75,7 @@ with (global.mouseItem)
     boxWidth = text_width + padding * 2;
     boxHeight = text_height + padding * 2
 }
+
 </string>
           </argument>
         </arguments>

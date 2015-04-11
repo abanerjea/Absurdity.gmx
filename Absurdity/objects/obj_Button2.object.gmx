@@ -58,6 +58,8 @@
             <kind>1</kind>
             <string>var fadeInOut = instance_create(0, 0, obj_FadeInOut);
 fadeInOut.targetRoom = rm_SecondInterface;
+global.level = 2;
+
 </string>
           </argument>
         </arguments>
