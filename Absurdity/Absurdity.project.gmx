@@ -51,11 +51,6 @@
     </sprites>
     <sprite>sprites\sprite10</sprite>
     <sprite>sprites\sprite12</sprite>
-    <sprites name="Rule Interface">
-      <sprite>sprites\step_1</sprite>
-      <sprite>sprites\step_2</sprite>
-      <sprite>sprites\step_3</sprite>
-    </sprites>
   </sprites>
   <backgrounds name="background"/>
   <paths name="paths"/>
@@ -115,18 +110,11 @@
       <object>objects\object16</object>
 >>>>>>> origin/Yihuan
     </objects>
-    <object>objects\object19</object>
-    <objects name="Rule Interface">
-      <object>objects\obj_step_1</object>
-      <object>objects\obj_step_2</object>
-      <object>objects\obj_step_3</object>
-    </objects>
   </objects>
   <rooms name="rooms">
     <room>rooms\rm_FirstInterface</room>
     <room>rooms\rm_SecondInterface</room>
     <room>rooms\rm_ThirdInterface</room>
-    <room>rooms\rm_Rules</room>
   </rooms>
   <help>
     <rtf>help.rtf</rtf>
