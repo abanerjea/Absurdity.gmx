@@ -265,7 +265,7 @@ for (i = 0; i &lt; global.numberOfRelation; i += 1)
 *   Check and mark right or wrong
 */
 
-if (global.showProofSlots)
+/*if (global.showProofSlots)
 {
     draw_set_alpha(1);
     var border = 4;
