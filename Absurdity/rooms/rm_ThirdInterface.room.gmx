@@ -56,6 +56,7 @@
     <instance objName="obj_BackButton" x="1216" y="608" name="inst_621562D6" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
     <instance objName="obj_ProofGraph" x="0" y="32" name="inst_EE56845C" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
     <instance objName="obj_CheckButton" x="0" y="640" name="inst_F64A08CA" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
+    <instance objName="obj_Chances" x="32" y="224" name="inst_17757C7E" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
   </instances>
   <tiles/>
   <PhysicsWorld>0</PhysicsWorld>

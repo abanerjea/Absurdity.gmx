@@ -3,38 +3,11 @@
   <spriteName>&lt;undefined&gt;</spriteName>
   <solid>0</solid>
   <visible>-1</visible>
-  <depth>-50</depth>
+  <depth>-60</depth>
   <persistent>0</persistent>
   <parentName>&lt;undefined&gt;</parentName>
   <maskName>&lt;undefined&gt;</maskName>
   <events>
-    <event eventtype="0" enumb="0">
-      <action>
-        <libid>1</libid>
-        <id>603</id>
-        <kind>7</kind>
-        <userelative>0</userelative>
-        <isquestion>0</isquestion>
-        <useapplyto>-1</useapplyto>
-        <exetype>2</exetype>
-        <functionname></functionname>
-        <codestring></codestring>
-        <whoName>self</whoName>
-        <relative>0</relative>
-        <isnot>0</isnot>
-        <arguments>
-          <argument>
-            <kind>1</kind>
-            <string>GMMovie_Init();
-movie_handle = GMMovie_Load(2,"D:\Game Maker\Absurdity\Absurdity.gmx\datafiles\Example_Paul.wmv","",true);
-GMMovie_SetPosition(movie_handle,0,0);
-GMMovie_SetSize(movie_handle,800,600);
-GMMovie_Play(movie_handle);
-</string>
-          </argument>
-        </arguments>
-      </action>
-    </event>
     <event eventtype="8" enumb="0">
       <action>
         <libid>1</libid>
@@ -52,7 +25,20 @@ GMMovie_Play(movie_handle);
         <arguments>
           <argument>
             <kind>1</kind>
-            <string></string>
+            <string>var temp = instance_find(obj_CheckButton,0);
+if (global.chances == 1)
+{
+    draw_sprite(spr_star_1,0,temp.x+200,temp.y);
+}
+else if (global.chances == 2)
+{
+    draw_sprite(spr_star_2,0,temp.x+200,temp.y);
+}
+else if (global.chances == 3)
+{
+    draw_sprite(spr_star_3,0,temp.x+200,temp.y);
+}
+</string>
           </argument>
         </arguments>
       </action>
